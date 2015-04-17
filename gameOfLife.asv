@@ -1,0 +1,33 @@
+function gameOfLife(size)
+cells = round(rand(size,size));
+
+
+
+    function total = sumNeighbors(x,y)
+       total = 0;
+       for i = x-1:x+1
+           for j = y-1:y+1
+               if i<1 
+                   i = size;
+               end
+               if i>size
+                   i = 1;
+               end
+               if j<1
+                   j = size;
+               end
+               if j>size
+                   j = 1;
+               end
+               total = total + cells(i,j);
+           end
+       end
+       total = total-cells(x,y);
+    end
+
+    function disp
+        
+        
+
+
+end
