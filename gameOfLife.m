@@ -1,5 +1,13 @@
-function gameOfLife(width, gen)
-cells = round(rand(width,width));
+%basic game of life, plus technically 7.6.
+%you can't really draw in matlab, but you can give it your own array if you
+%want
+%exercise 7.7 too because I went ahead and added in the wrap around thing
+%at first
+%and 7.8. bam. i'm awesome.
+function gameOfLife(width, gen, cells)
+if cells == []
+    cells = round(rand(width,width));
+end
 showCells();
 
 
@@ -7,7 +15,7 @@ count = 0;
 
 while (count <gen)
     count = count +1;
-    nextGen = cells(:,:,end);
+    nextGen = cells(:,:);
 % update with game of life rules
     for row = 1:width
         for col = 1:width
@@ -24,7 +32,7 @@ while (count <gen)
         end
     end
 
-    cells(:,:,end+1) = nextGen;
+    cells(:,:) = nextGen;
     pause;
     showCells();
 end
@@ -53,17 +61,14 @@ end
     end
 
     function showCells
-        [~,~,l] = size(cells)
-        for layer = 1:l
-            for y = width:-1:1
-                for i = 1:width
-                    if cells(width-y+1,i,layer) == 1
-                        fill3([i-.5,i+.5,i+.5,i-.5,i-.5], [y-1,y-1,y,y,y-1], [layer,layer,layer,layer,layer], 'white')
-                        hold on
-                    else
-                        fill3([i-.5,i+.5,i+.5,i-.5,i-.5], [y-1,y-1,y,y,y-1], [layer,layer,layer,layer,layer], 'black')
-                        hold on
-                    end
+        for y = width:-1:1
+            for i = 1:width
+                if cells(width-y+1,i) == 1
+                    fill([i-.5,i+.5,i+.5,i-.5,i-.5], [y-1,y-1,y,y,y-1], 'white')
+                    hold on
+                else
+                    fill([i-.5,i+.5,i+.5,i-.5,i-.5], [y-1,y-1,y,y,y-1], 'black')
+                    hold on
                 end
             end
         end
