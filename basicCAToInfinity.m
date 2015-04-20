@@ -1,10 +1,8 @@
-function basicCA
-cells = zeros(1,20);
-cells(10) = 1;
-ruleset = [0,1,0,1,1,0,1,0]; 
-numRuns = 0;
-while numRuns<20
-    numRuns=numRuns+1;
+%exercise 7.4
+function basicCAToInfinity
+cells = round(rand(1,20));
+ruleset = round(rand(1,8));
+while true
     [r,c] = size(cells); 
     for y = r:-1:1
         
@@ -42,7 +40,11 @@ sum(cells)
         ind = bin2dec(neighbors);
         next(col) = ruleset(ind+1);
         
+        if (row == 20)
+            arr(1, :) = [];
+        end
         arr = [arr;next];
+        
     end
 
 end

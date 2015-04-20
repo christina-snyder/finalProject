@@ -1,10 +1,20 @@
-function basicCA
-cells = zeros(1,20);
-cells(10) = 1;
-ruleset = [0,1,0,1,1,0,1,0]; 
+%exercise 7.1 and 7.2
+%if random is false->7.1
+function basicCARandomRuleset(random)
+if random
+    cells = round(rand(1,20));
+else
+    cells = zeros(1,20);
+    cells(10) = 1;
+end
+ruleset = round(rand(1,8)); 
 numRuns = 0;
 while numRuns<20
     numRuns=numRuns+1;
+    if (numRuns == 20)
+        numRuns = 1;
+        ruleset = round(rand(1,8));
+    end
     [r,c] = size(cells); 
     for y = r:-1:1
         
@@ -42,7 +52,11 @@ sum(cells)
         ind = bin2dec(neighbors);
         next(col) = ruleset(ind+1);
         
-        arr = [arr;next];
+        if (row == 20)
+            arr = next;
+        else
+            arr = [arr;next];
+        end
     end
 
 end
