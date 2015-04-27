@@ -13,7 +13,8 @@ imshow(img)
 %     end
 % end
 img = double(img);
-for j = 1:20:150
+plotNum = 1;
+for j = 1:10:151
     for i = 1:3
         topLeft = img(1*j:end-2*j, 1*j:end-2*j, i);
         topCenter = img(1*j:end-2*j, 2*j:end-1*j, i);
@@ -37,8 +38,10 @@ for j = 1:20:150
         end
     end
     newImg = cat(3,red,green,blue);
-    figure
+    subplot(4,4,plotNum);
     imshow(newImg)
+    title(sprintf('Window Size: %d', j))
+    plotNum = plotNum + 1;
 end
 
 %end
