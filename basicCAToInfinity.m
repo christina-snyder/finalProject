@@ -17,7 +17,9 @@ while true
         end
     end
     axis equal
-    pause
+    title('1 Dimentional- Random ruleset, starting states');
+    ylabel('Time');
+    pause(.5)
     hold off
     cells = nextRow(cells);
 end

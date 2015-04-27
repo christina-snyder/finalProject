@@ -1,31 +1,24 @@
-%basic game of life, plus technically 7.6.
-%you can't really draw in matlab, but you can give it your own array if you
-%want
-%exercise 7.7 too because I went ahead and added in the wrap around thing
-%at first
-%and 7.8. bam. i'm awesome.
-function gameOfLife(width, gen, cells)
-if isempty(cells)
-    cells = round(rand(width,width));
-end
+%exercise 7.10
+function gameOfLifeProb
+cells = round(rand(20,20));
 showCells();
 
 
 count = 0;
 
-while (count <gen)
+while (count < 20)
     count = count +1;
     nextGen = cells(:,:);
 % update with game of life rules
-    for row = 1:width
-        for col = 1:width
+    for row = 1:20
+        for col = 1:20
             n = sumNeighbors(row,col);
             if cells(row,col,end) == 1
-                if n>=4 || n<=1
+                if (n>=4 && rand(1)<.8) || (n<=1 && rand(1)<.6)
                     nextGen(row,col) = 0;
                 end
             else
-                if n == 3
+                if n == 3 && rand(1)<.75
                     nextGen(row,col) = 1;
                 end
             end
@@ -33,7 +26,7 @@ while (count <gen)
     end
 
     cells(:,:) = nextGen;
-    pause(.4)
+    pause;
     showCells();
 end
 
@@ -43,15 +36,15 @@ end
        for i = x-1:x+1
            for j = y-1:y+1
                if i<1 
-                   i = width;
+                   i = 20;
                end
-               if i>width
+               if i>20
                    i = 1;
                end
                if j<1
-                   j = width;
+                   j = 20;
                end
-               if j>width
+               if j>20
                    j = 1;
                end
                total = total + cells(i,j,end);
@@ -61,9 +54,9 @@ end
     end
 
     function showCells
-        for y = width:-1:1
-            for i = 1:width
-                if cells(width-y+1,i) == 1
+        for y = 20:-1:1
+            for i = 1:20
+                if cells(20-y+1,i) == 1
                     fill([i-.5,i+.5,i+.5,i-.5,i-.5], [y-1,y-1,y,y,y-1], 'white')
                     hold on
                 else
@@ -73,7 +66,6 @@ end
             end
         end
         axis equal;
-        title('Game of Life')
     end
 
 

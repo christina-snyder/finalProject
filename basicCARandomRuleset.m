@@ -29,6 +29,8 @@ while numRuns<20
         end
     end
     axis equal
+    title('1 Dimentional- Random ruleset');
+    ylabel('Time');
     pause
     hold off
     cells = nextRow(cells);

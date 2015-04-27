@@ -36,6 +36,8 @@ while numRuns<20
         end
     end
     axis equal
+    title('1 Dimentional- Lifespan')
+    ylabel('Time')
     pause
     hold off
     cells = nextRow(cells);

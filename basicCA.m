@@ -19,12 +19,12 @@ while numRuns<20
         end
     end
     axis equal
+    title('1 dimentional- Rule 90');
+    ylabel('Time');
     pause
     hold off
     cells = nextRow(cells);
 end
-
-sum(cells)
 
     function arr = nextRow(arr)
         [row, col] = size(arr);

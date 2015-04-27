@@ -2,7 +2,6 @@
 function basicCAToInfinity
 cells = round(rand(1,20));
 ruleset = round(rand(1,8));
-colors = '
 while true
     [r,c] = size(cells); 
     for y = r:-1:1
@@ -18,7 +17,8 @@ while true
         end
     end
     axis equal
-    pause
+    title('1 Dimentional- Random ruleset, st
+    pause(.5)
     hold off
     cells = nextRow(cells);
 end
