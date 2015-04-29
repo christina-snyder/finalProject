@@ -1,5 +1,5 @@
 function basicCA
-cells = zeros(1,20);
+cells = round(rand(1,20));
 cells(10) = 1;
 ruleset = [0,1,0,1,1,0,1,0]; 
 numRuns = 0;

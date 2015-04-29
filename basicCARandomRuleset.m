@@ -11,10 +11,10 @@ ruleset = round(rand(1,8));
 numRuns = 0;
 while numRuns<20
     numRuns=numRuns+1;
-    if (numRuns == 20)
-        numRuns = 1;
-        ruleset = round(rand(1,8));
-    end
+%     if (numRuns == 20)
+%         numRuns = 1;
+%         ruleset = round(rand(1,8));
+%     end
     [r,c] = size(cells); 
     for y = r:-1:1
         

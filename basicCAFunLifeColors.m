@@ -36,9 +36,12 @@ while numRuns<20
         end
     end
     axis equal
-    title('1 Dimentional- Lifespan')
+    for i = 1:8
+        t(i) = num2str(ruleset(i));
+    end
+    title(sprintf('Lifespan- Rule %d', bin2dec(t)));
     ylabel('Time')
-    pause
+    pause(.2)
     hold off
     cells = nextRow(cells);
 end

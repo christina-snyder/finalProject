@@ -1,13 +1,16 @@
 function edgeDetection(img,rule)
 %convert to monochrome
+rule4title = rule;
+[name, ext] = strtok(img, '.');
 img = imread(img);
-imshow(img)
+%imshow(img)
 img = double(img);
 img = mean(img,3);
 img = im2bw(uint8(img));
 img = double(img);
-figure
-imshow(img)
+%figure
+%imshow(img)
+imwrite(img, 'MountainMono.jpg');
 rule = dec2bin(rule);
 rule = [ones(1,10-length(rule))*48, rule];
 %copy and pasted code from blur image. didn't feel like removing i/j
@@ -30,6 +33,7 @@ edges = ones(r-2,c-2);
 for i = 1:10
     edges(total == i-1) = str2num(rule(i));
 end
-figure
+%figure
 imshow(uint8(edges)*255)
+imwrite(uint8(edges)*255, sprintf('%s_edgedRyle%d%s', name, rule4title, ext));
 end

@@ -1,7 +1,7 @@
 %exercise 7.5
 function basicCAWolframClassifications
-cells = zeros(1,20,4);
-cells(1,10,:) = 1;
+cells = round(rand(1,19,4));
+%cells(1,10,:) = 1;
 ruleset(1,:) = dec2bin(222);
 ruleset(1,:) = ruleset(1, end:-1:1);
 ruleset(2,:) = dec2bin(190);
@@ -10,11 +10,12 @@ ruleset(3,:) = ['000', dec2bin(30)]; %30 isn't long enough...
 ruleset(3,:) = ruleset(3,end:-1:1);
 ruleset(4,:) = ['0', dec2bin(110)];
 ruleset(4,:) = ruleset(4,end:-1:1);
-
-while true
+count = 0;
+while count <20
+    count = count + 1;
     [r,c,~] = size(cells); 
     for s = 1:4
-        subplot(2,2,s)
+        subplot(1,4,s)
         for y = r:-1:1
             for i = 1:c
                 if cells(r-y+1,i,s) == 1
@@ -26,7 +27,7 @@ while true
                 end
             end
         end
-        axis equal
+        axis square
         switch s
             case 1
                 title('Class 1- Constant state');
@@ -38,7 +39,8 @@ while true
                 title('Class 4- Complex');
         end
     end
-    pause(.4)
+%     pause(.4)
+%     axis equal
     hold off
     cells = nextRow(cells);
 end
