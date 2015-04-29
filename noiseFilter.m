@@ -1,4 +1,5 @@
 function noiseFilter(img)
+[name, ext] = strtok(img, '.');
 img = imread(img);
 [row,col,~] = size(img);
 noise = rand(row,col);
@@ -10,6 +11,7 @@ r(noise>.85) = 255;
 r(noise<.15) = 0;
 figure
 imshow(r);
+imwrite(r, sprintf('%s_noisy%s', name, ext));
 fixed = zeros(row,col);
 r = double(r);
 for i = 2:row-1
@@ -32,6 +34,7 @@ end
 figure
 fixed = uint8(fixed);
 imshow(fixed)
+imwrite(fixed, sprintf('%s_noisyFixed%s', name, ext));
 
 
 

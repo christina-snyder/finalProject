@@ -1,4 +1,5 @@
 function colorNoiseFilter(img)
+[name, ext] = strtok(img, '.');
 img = imread(img);
 [row,col,~] = size(img);
 noise = rand(row,col);
@@ -16,6 +17,7 @@ b(noise>.85) = 255;
 b(noise<.15) = 0;
 figure
 imshow(uint8(cat(3,r,g,b)));
+imwrite(uint8(cat(3,r,g,b)), sprintf('%s_noisy%s', name, ext));
 fixed = zeros(row,col,3);
 for i = 2:row-1
     for j = 2:col-1
@@ -68,6 +70,7 @@ for i = 2:row-1
 end
 figure
 fixed = uint8(fixed);
+imwrite(fixed, sprintf('%s_noisyFixed%s', name, ext));
 imshow(fixed)
 
 
